@@ -1,0 +1,76 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3fa9f5"
+    tools:context="com.myapp.thesis.MainActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="18dp"
+            android:layout_toLeftOf="@+id/ImageView01"
+            android:scaleType="fitXY"
+            android:src="@drawable/abc_menu_dropdown_panel_holo_light" />
+
+        <ImageView
+            android:id="@+id/ImageView02"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="18dp"
+            android:layout_toRightOf="@+id/ImageView01"
+            android:scaleType="fitXY"
+            android:src="@drawable/abc_menu_dropdown_panel_holo_light" />
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/abc_menu_dropdown_panel_holo_light" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:layout_above="@+id/imageView1"
+            android:layout_alignParentLeft="true"
+            android:background="#ffffff"
+            android:layout_marginTop="20sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView1"
+            android:layout_alignLeft="@+id/imageView1"
+            android:layout_alignRight="@+id/ImageView02"
+            android:layout_alignTop="@+id/textView1"
+            android:scaleType="fitXY"
+            android:src="@drawable/abc_list_divider_holo_light" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:background="#159b9b"
+            android:text="OCR"
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
+
+</FrameLayout>

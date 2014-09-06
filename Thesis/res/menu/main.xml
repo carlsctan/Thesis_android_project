@@ -2,11 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.myapp.thesis.MainActivity" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+    
+    <item android:id="@+id/menu_take_pic"
+        android:icon="@drawable/ic_launcher"
+        android:title="@string/menu_take_photo"/>
+	<item android:id="@+id/menu_gallery"
+	    android:icon="@drawable/ic_launcher"
+	    android:title="@string/menu_gallery"/>
+    <item android:id="@+id/menu_ocr" 
+        android:icon="@drawable/ic_launcher"
+        android:title="@string/menu_ocr"/>
 
 </menu>
