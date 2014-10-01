@@ -3,7 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3fa9f5"
+    android:background="#6960EC"
     tools:context="com.myapp.thesis.MainActivity"
     tools:ignore="MergeRootFrame" >
 

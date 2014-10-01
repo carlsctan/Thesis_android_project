@@ -37,7 +37,7 @@ public class StartScreenActivity extends ActionBarActivity {
 		TextView start_text = (TextView) this.findViewById(R.id.start_view);
 		
 		Animation anim = new AlphaAnimation(0.0f, 1.0f);
-		anim.setDuration(100); //You can manage the blinking time with this parameter
+		anim.setDuration(300); //You can manage the blinking time with this parameter
 		anim.setStartOffset(20);
 		anim.setRepeatMode(Animation.REVERSE);
 		anim.setRepeatCount(Animation.INFINITE);
@@ -72,18 +72,18 @@ public class StartScreenActivity extends ActionBarActivity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-	}
+//	public static class PlaceholderFragment extends Fragment {
+//
+//		public PlaceholderFragment() {
+//		}
+//
+//		@Override
+//		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//				Bundle savedInstanceState) {
+//			View rootView = inflater.inflate(R.layout.fragment_main, container,
+//					false);
+//			return rootView;
+//		}
+//	}
 
 }

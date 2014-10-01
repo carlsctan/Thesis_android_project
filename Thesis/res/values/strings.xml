@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Mathemagic</string>
+    <string name="app_name">Math &amp; Magic</string>
     <string name="action_settings">Settings</string>
     <string name="menu_take_photo">Take Photo</string>
     <string name="menu_gallery">Gallery</string>

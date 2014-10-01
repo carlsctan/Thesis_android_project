@@ -3,7 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@drawable/bg"
     tools:context="com.myapp.thesis.MainScreenActivity"
     tools:ignore="MergeRootFrame" >
 
@@ -11,8 +11,85 @@
         android:id="@+id/selected_image"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_above="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" 
-        android:src="@null"/>
+        android:layout_alignParentTop="true"
+        android:src="@null" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="#12FFFFFF"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp" >
+
+        <TextView
+            android:id="@+id/take_photo_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/menu_take_photo"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/gallery_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/menu_gallery"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/ocr_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/menu_ocr"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:background="#12FFFFFF"
+        android:paddingLeft="10dp" >
+
+        <ImageView
+            android:id="@+id/take_photo"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_action_cam" />
+
+        <ImageView
+            android:id="@+id/gallery"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_action_gal" />
+
+        <ImageView
+            android:id="@+id/ocr"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_action_play" />
+    </LinearLayout>
 
 </RelativeLayout>

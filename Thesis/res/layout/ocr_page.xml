@@ -3,7 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3fa9f5"
+    android:background="#6960EC"
     tools:context="com.myapp.thesis.MainActivity"
     tools:ignore="MergeRootFrame" >
 
@@ -14,18 +14,29 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="#FFFFFF"
-        android:text="\n y=2x+3z-4w\n y=3x-5z-6w\n y=7x-2z+4w"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/startOcr"
         android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="52dp"
         android:background="#159b9b"
-        android:text="Calcurate"
+        android:text="Calculate"
         android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/ocrText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView1"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
