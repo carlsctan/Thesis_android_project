@@ -9,9 +9,23 @@
     <string name="start_button">Tap anywhere to start</string>
 	<string name="help_button">Help</string>
 	<string name="info_button">Information</string>
+	
 	<string name="info_head1">Version Number: xx</string>
 	<string name="info_head2">Last Updated: xx</string>
 	<string name="info_head3">Contributors:</string>
-	<string name="contribs">Blah\nBleh\nBluh</string>
+	<string name="contribs">Tan, Carl\nYazaki, Koichi\nAgbisit, Carl</string>
 	<string name="OK">OK</string>
+	
+	<string name="calc">Calculate</string>
+	<string name="result_holder">\n y=2x+3z-4w\n y=3x-5z-6w\n y=7x-2z+4w</string>
+	<string name="result_hint">Answers will be displayed here</string>
+	
+	<string name="desc">Image here</string>
+	
+	<string name="pg1_h">Step 1: \nUse the Camera to take a picture of a linear equation.</string>
+	<string name="pg1_i">OR\nSelect a picture taken beforehand from your Gallery.</string>
+	<string name="pg2_h">Step 2: \nClick on the OCR Button while the picture you\'ve chosen is shown.</string>
+	<string name="pg3_h">The detected equation is shown on the line above.</string>
+	<string name="pg3_i">Finally, click on Calculate to solve.</string>
+	
 </resources>

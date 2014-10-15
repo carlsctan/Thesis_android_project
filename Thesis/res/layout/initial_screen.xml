@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     tools:context="com.myapp.thesis.StartScreenActivity"
     tools:ignore="MergeRootFrame" >
-    
+
     <ImageView
         android:id="@+id/bg_image"
-        android:src="@drawable/bg"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scaleType="centerCrop" />
+        android:contentDescription="@string/desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg" />
 
     <TextView
         android:id="@+id/start_view"
@@ -28,12 +29,13 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/start_view"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="10dp"
-        android:layout_above="@+id/start_view"
+        android:contentDescription="@string/desc"
         android:src="@drawable/mathemagic1" />
 
     <ImageView
@@ -45,6 +47,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:onClick="onClickHelpBtn"
         android:src="@drawable/ic_action_help" />
 
@@ -56,6 +59,7 @@
         android:layout_alignRight="@+id/textView1"
         android:layout_alignTop="@+id/help_button"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:onClick="onClickInfoBtn"
         android:src="@drawable/ic_action_about" />
 
