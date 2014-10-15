@@ -14,9 +14,10 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="#00000000"
+        android:padding="5dp"
+        android:text="@string/result_holder"
         android:textColor="#FFFFFF"
-        android:text="\n y=2x+3z-4w\n y=3x-5z-6w\n y=7x-2z+4w"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -31,9 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:text="Answers will be display here"
+        android:text="@string/result_hint"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFFFFF" />
 

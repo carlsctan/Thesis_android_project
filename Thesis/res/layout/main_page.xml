@@ -5,13 +5,14 @@
     android:layout_height="fill_parent"
     tools:context="com.myapp.thesis.MainScreenActivity"
     tools:ignore="MergeRootFrame" >
-    
+
     <ImageView
         android:id="@+id/bg_image"
-        android:src="@drawable/bg"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scaleType="centerCrop" />
+        android:contentDescription="@string/desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg0" />
 
     <ImageView
         android:id="@+id/selected_image"
@@ -20,6 +21,7 @@
         android:layout_above="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:contentDescription="@string/desc"
         android:src="@null" />
 
     <LinearLayout
@@ -77,6 +79,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
+            android:contentDescription="@string/desc"
             android:src="@drawable/ic_action_cam" />
 
         <ImageView
@@ -86,6 +89,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
+            android:contentDescription="@string/desc"
             android:src="@drawable/ic_action_gal" />
 
         <ImageView
@@ -95,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
+            android:contentDescription="@string/desc"
             android:src="@drawable/ic_action_play" />
     </LinearLayout>
 
