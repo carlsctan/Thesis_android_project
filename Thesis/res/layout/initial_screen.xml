@@ -3,9 +3,26 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg0"
     tools:context="com.myapp.thesis.StartScreenActivity"
     tools:ignore="MergeRootFrame" >
+    
+    <ImageView
+        android:id="@+id/bg_image"
+        android:src="@drawable/bg"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/start_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/start_button"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic" />
 
     <ImageView
         android:id="@+id/textView1"
@@ -14,20 +31,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/start_view"
         android:src="@drawable/mathemagic1" />
-
-    <TextView
-        android:id="@+id/start_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:text="@string/start_button"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="40dp"
-        android:textStyle="italic" />
 
     <ImageView
         android:id="@+id/help_button"
@@ -38,6 +45,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
         android:clickable="true"
+        android:onClick="onClickHelpBtn"
         android:src="@drawable/ic_action_help" />
 
     <ImageView
@@ -48,6 +56,7 @@
         android:layout_alignRight="@+id/textView1"
         android:layout_alignTop="@+id/help_button"
         android:clickable="true"
+        android:onClick="onClickInfoBtn"
         android:src="@drawable/ic_action_about" />
 
 </RelativeLayout>

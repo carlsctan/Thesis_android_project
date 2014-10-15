@@ -1,8 +1,10 @@
 package com.myapp.thesis;
 
 import java.io.ByteArrayOutputStream;
-
-import com.joshholtz.cropimageview.CropImageView;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -13,9 +15,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,11 +29,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainScreenActivity extends ActionBarActivity {
-	static final int REQUEST_IMAGE_CAPTURE = 1;
-	static final int REQUEST_CODE_CROP_IMAGE = 2;
-	private static final int RESULT_LOAD_IMAGE = 3;
-	private ImageView imgView;
-	
+	public static final int REQUEST_IMAGE_CAPTURE = 100;
+	public static final int REQUEST_CODE_CROP_IMAGE = 200;
+	public static final int RESULT_LOAD_IMAGE = 300;
+	public static final int MEDIA_TYPE_IMAGE = 1;
+	public static final int MEDIA_TYPE_VIDEO = 2;
+
+	private String _root;
+	private ImageView mImageView;
+	OCRScreenActivity OCR= new OCRScreenActivity();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +45,9 @@ public class MainScreenActivity extends ActionBarActivity {
 		setContentView(R.layout.main_page);
 		this.getSupportActionBar().show();
 		
-		imgView = (ImageView)this.findViewById(R.id.selected_image);
+		_root = getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
+		
+		mImageView = (ImageView)this.findViewById(R.id.selected_image);
 		ImageView take_photo = (ImageView) this.findViewById(R.id.take_photo);
 		take_photo.setOnClickListener(new View.OnClickListener() {
 			
@@ -100,8 +110,20 @@ public class MainScreenActivity extends ActionBarActivity {
 //	}
 	
 	private void proceedOcr() {    
-	    Bitmap imageBitmap = ((BitmapDrawable)imgView.getDrawable()).getBitmap();
-	    imgView.setImageBitmap(imageBitmap);
+		ImageView mImageView = (ImageView)this.findViewById(R.id.selected_image);    
+	    Bitmap imageBitmap;
+	    
+	    if ((mImageView.getDrawable())==null){
+	    	Log.v("MainScreenActivity","Set Defult Image ");
+	    	imageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_about);
+//	    	mImageView.setImageResource(R.drawable.testimagecolor);
+//	    	imageBitmap = ((BitmapDrawable)mImageView.getDrawable()).getBitmap();
+//	    	imageBitmap = imageBitmap.copy(Bitmap.Config.ARGB_8888, true);
+	    }
+	    else {
+	    	imageBitmap = ((BitmapDrawable)mImageView.getDrawable()).getBitmap();
+	    }
+	    
 		Intent start_intent = new Intent(MainScreenActivity.this, OCRScreenActivity.class);
 		start_intent.putExtra("inputValKey", imageBitmap);
 		startActivity(start_intent);
@@ -121,7 +143,28 @@ public class MainScreenActivity extends ActionBarActivity {
 	        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 	    }
 	}
-
+	
+	
+	private void saveImageBitmap(Bitmap image){
+	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+	    File myDir = new File(_root);
+	    myDir.mkdirs();
+		String fname = "IMG"+ timeStamp +".jpg";
+		File file = new File (myDir, fname);
+		if (file.exists ()) file.delete (); 
+		try {
+		       FileOutputStream out = new FileOutputStream(file);
+		       image.compress(Bitmap.CompressFormat.JPEG, 90, out);
+		       out.flush();
+		       out.close();
+		
+		} catch (Exception e) {
+		       e.printStackTrace();
+		}
+		Log.v("TEST", _root);
+	}
+	
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(resultCode == RESULT_OK && data != null){
@@ -129,7 +172,9 @@ public class MainScreenActivity extends ActionBarActivity {
 			Bitmap imageBitmap = extras.getParcelable("data");
 		    switch (requestCode){
 		    	case REQUEST_IMAGE_CAPTURE: 
-			        imgView.setImageBitmap(imageBitmap);
+			        mImageView.setImageBitmap(imageBitmap);
+		    		saveImageBitmap(imageBitmap);
+			        OCR._taken = true;
 		    	break;
 		
 		    	case RESULT_LOAD_IMAGE:
@@ -143,8 +188,8 @@ public class MainScreenActivity extends ActionBarActivity {
 //		            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 //		            String picturePath = cursor.getString(columnIndex);
 //		            cursor.close();
-		            imgView.setImageBitmap((Bitmap) extras.getParcelable("data"));
-//		    		imgView.setImageBitmap(BitmapFactory.decodeFile(picturePath));		
+		            mImageView.setImageBitmap((Bitmap) extras.getParcelable("data"));
+//		    		mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));		
 		    }
 		}
 	}
@@ -154,10 +199,5 @@ public class MainScreenActivity extends ActionBarActivity {
 		super.onDestroy();
 		android.os.Debug.stopMethodTracing();
 	}
-	
-//	@Override
-//	protected void onSaveInstanceState(Bundle outState) {
-//		outState.putBoolean(OCRScreenActivity.PHOTO_TAKEN, OCR._taken);
-//	}
 	
 }

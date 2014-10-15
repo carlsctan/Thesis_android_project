@@ -1,9 +1,15 @@
 package com.myapp.thesis;
 
+import android.renderscript.Sampler.Value;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.UrlQuerySanitizer.ValueSanitizer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,7 +36,7 @@ public class StartScreenActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				onClickStartBtn();				
+				onClickStartBtn(v);				
 			}
 		});
 		
@@ -42,30 +48,21 @@ public class StartScreenActivity extends ActionBarActivity {
 		anim.setRepeatMode(Animation.REVERSE);
 		anim.setRepeatCount(Animation.INFINITE);
 		start_text.startAnimation(anim);
-		
-//		start_btn.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				onClickStartBtn();				
-//			}
-//		});
-		
-		
-//		if (savedInstanceState == null) {
-//			getSupportFragmentManager().beginTransaction()
-//					.add(R.id.container, new PlaceholderFragment()).commit();
-//		}
 	}
 
-	public void onClickStartBtn(){
+	public void onClickStartBtn(View v){
 		Intent start_intent = new Intent(this, MainScreenActivity.class);
 		startActivity(start_intent);
 	}
 	
-	public void onClickHelpBtn(){
-		Intent help_intent = new Intent(StartScreenActivity.this, MainScreenActivity.class);
+	public void onClickHelpBtn(View v){
+		Intent help_intent = new Intent(this, CustomHelp.class);
 		startActivity(help_intent);
+	}
+	public void onClickInfoBtn(View v){
+		CustomDialog cd = new CustomDialog(this);
+		cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+		cd.show();
 	}
 	
 	

@@ -51,6 +51,13 @@
                 
              </intent-filter>
         </activity>
+        <activity
+            android:name="com.myapp.thesis.ResultScreenActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name="com.myapp.thesis.CustomHelp" >
+        </activity>
     </application>
 
 </manifest>
