@@ -3,27 +3,28 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6960EC"
+    android:background="@drawable/bg0"
     tools:context="com.myapp.thesis.MainActivity"
     tools:ignore="MergeRootFrame" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="400sp"
+        android:layout_height="400dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#FFFFFF"
-        android:textSize="20sp" />
+        android:background="#00000000"
+        android:textSize="20dp" />
 
     <Button
-        android:id="@+id/startOcr"
-        android:layout_width="150sp"
+        android:id="@+id/startCalcu"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="52dp"
         android:background="#159b9b"
+        android:onClick="procResult"
         android:text="Calculate"
         android:textColor="#FFFFFF" />
 
@@ -34,9 +35,17 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/textView1"
+        android:textColor="#FFFFFF"
         android:ems="10" >
 
         <requestFocus />
     </EditText>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/textView1" />
 
 </RelativeLayout>
