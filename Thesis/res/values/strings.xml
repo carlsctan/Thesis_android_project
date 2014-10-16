@@ -11,9 +11,9 @@
 	<string name="info_button">Information</string>
 	
 	<string name="info_head1">Version Number: 0.6</string>
-	<string name="info_head2">Last Updated: October 16, 2014</string>
-	<string name="info_head3">Contributors:</string>
-	<string name="contribs">Tan, Carl Stephen\nYazaki, Koichi\n-   Special Thanks To   -\nAgbisit, Carl Patrick</string>
+	<string name="info_head2">Last Updated:\nOctober 16, 2014</string>
+	<string name="info_head3">By:</string>
+	<string name="contribs">Tan, Carl Stephen\nYazaki, Koichi\nSpecial Thanks To:\n Agbisit, Carl Patrick</string>
 	<string name="OK">OK</string>
 	
 	<string name="calc">Calculate</string>
