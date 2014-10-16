@@ -29,15 +29,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainScreenActivity extends ActionBarActivity {
-	public static final int REQUEST_IMAGE_CAPTURE = 100;
-	public static final int REQUEST_CODE_CROP_IMAGE = 200;
-	public static final int RESULT_LOAD_IMAGE = 300;
-	public static final int MEDIA_TYPE_IMAGE = 1;
-	public static final int MEDIA_TYPE_VIDEO = 2;
-
-	private String _root;
+	public static final int REQUEST_IMAGE_CAPTURE = 1;
+	public static final int REQUEST_LOAD_IMAGE = 3;
+	
+	public static String _root;
+	public static File rootFile;
 	private ImageView mImageView;
 	OCRScreenActivity OCR= new OCRScreenActivity();
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,13 @@ public class MainScreenActivity extends ActionBarActivity {
 		setContentView(R.layout.main_page);
 		this.getSupportActionBar().show();
 		
+		//path of app-private directory
 		_root = getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
+		
+		//creation of folders to the path _root
+		rootFile = new File(_root);
+		rootFile.mkdirs();
+		
 		
 		mImageView = (ImageView)this.findViewById(R.id.selected_image);
 		ImageView take_photo = (ImageView) this.findViewById(R.id.take_photo);
@@ -74,83 +79,52 @@ public class MainScreenActivity extends ActionBarActivity {
 		});
 	}
 	
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//	    MenuInflater inflater = getMenuInflater();
-//	    inflater.inflate(R.menu.main, menu);
-//	    return true;
-//
-//	}
 
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		// Handle action bar item clicks here. The action bar will
-//		// automatically handle clicks on the Home/Up button, so long
-//		// as you specify a parent activity in AndroidManifest.xml.
-//		int id = item.getItemId();
-//		switch (id){
-//			case R.id.menu_take_pic:
-//				takePicture();
-//				break;
-//			case R.id.menu_gallery:
-//				openGallery();
-//				break;
-//			case R.id.menu_ocr:
-//				proceedOcr();
-//				break;
-//		}
-//		return super.onOptionsItemSelected(item);
-//	}
-//	
-//	private Uri getImageUri(Context inContext, Bitmap inImage) {
-//		  ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//		  inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//		  String path = Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-//		  return Uri.parse(path);
-//	}
-	
-	private void proceedOcr() {    
-		ImageView mImageView = (ImageView)this.findViewById(R.id.selected_image);    
-	    Bitmap imageBitmap;
-	    
-	    if ((mImageView.getDrawable())==null){
-	    	Log.v("MainScreenActivity","Set Defult Image ");
-	    	imageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_about);
-//	    	mImageView.setImageResource(R.drawable.testimagecolor);
-//	    	imageBitmap = ((BitmapDrawable)mImageView.getDrawable()).getBitmap();
-//	    	imageBitmap = imageBitmap.copy(Bitmap.Config.ARGB_8888, true);
-	    }
-	    else {
-	    	imageBitmap = ((BitmapDrawable)mImageView.getDrawable()).getBitmap();
-	    }
-	    
-		Intent start_intent = new Intent(MainScreenActivity.this, OCRScreenActivity.class);
-		start_intent.putExtra("inputValKey", imageBitmap);
-		startActivity(start_intent);
+	private void proceedOcr() {
+		  ImageView mImageView = (ImageView)this.findViewById(R.id.selected_image);    
+		    Bitmap imageBitmap;
+		    if ((mImageView.getDrawable())!=null){
+			    if ((mImageView.getDrawable())==null){
+			    	Log.v("MainScreenActivity","Set Defult Image ");
+//			    	imageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.testimage);
+	//		    	mImageView.setImageResource(R.drawable.testimagecolor);
+	//		    	imageBitmap = ((BitmapDrawable)mImageView.getDrawable()).getBitmap();
+	//		    	imageBitmap = imageBitmap.copy(Bitmap.Config.ARGB_8888, true);
+			    	imageBitmap = null;
+			    }
+			    else {
+			    	imageBitmap = ((BitmapDrawable)mImageView.getDrawable()).getBitmap();
+			    }
+				Intent start_intent = new Intent(MainScreenActivity.this, OCRScreenActivity.class);
+				start_intent.putExtra("inputValKey", imageBitmap);
+				startActivity(start_intent);
+		    }else{
+		    	Toast.makeText(this, "Please select image", Toast.LENGTH_SHORT).show();
+		    }
 		
 	}
 
 	private void openGallery() {
-		Intent i = new Intent(
-				Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-				startActivityForResult(i, RESULT_LOAD_IMAGE);
+		if(rootFile.listFiles().length != 0){
+		Intent intent = new Intent(MainScreenActivity.this, GalleryScreenActivity.class);
+		startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+		}
+		else{
+			Toast.makeText(this, "No Image in Directory", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private void takePicture() {
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString());
 		if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 	        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 	    }
 	}
 	
-	
 	private void saveImageBitmap(Bitmap image){
 	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-	    File myDir = new File(_root);
-	    myDir.mkdirs();
 		String fname = "IMG"+ timeStamp +".jpg";
-		File file = new File (myDir, fname);
+		File file = new File (rootFile, fname);
 		if (file.exists ()) file.delete (); 
 		try {
 		       FileOutputStream out = new FileOutputStream(file);
@@ -163,33 +137,28 @@ public class MainScreenActivity extends ActionBarActivity {
 		}
 		Log.v("TEST", _root);
 	}
-	
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.v("resultCode", new Float(resultCode).toString());
 		if(resultCode == RESULT_OK && data != null){
 			Bundle extras = data.getExtras();
 			Bitmap imageBitmap = extras.getParcelable("data");
+			Log.v("requestCode", new Float(requestCode).toString());
 		    switch (requestCode){
 		    	case REQUEST_IMAGE_CAPTURE: 
-			        mImageView.setImageBitmap(imageBitmap);
+		    		mImageView.setImageBitmap(imageBitmap);
 		    		saveImageBitmap(imageBitmap);
+		    		File f = new File(_root);
+		    		Log.v("file", Uri.fromFile(f.listFiles()[0]).toString());
+		    		
 			        OCR._taken = true;
-		    	break;
+			        break;
 		
-		    	case RESULT_LOAD_IMAGE:
-//		    		Uri image = data.getData();
-//		    		String[] filePathColumn = { MediaStore.Images.Media.DATA };
-//		    		 
-//				Cursor cursor = getContentResolver().query(image,
-//		                    filePathColumn, null, null, null);
-//		            cursor.moveToFirst();
-//		    
-//		            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//		            String picturePath = cursor.getString(columnIndex);
-//		            cursor.close();
-		            mImageView.setImageBitmap((Bitmap) extras.getParcelable("data"));
-//		    		mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));		
+		    	case REQUEST_LOAD_IMAGE:
+		    		Log.v("MAINSCREEN DATA", (Uri.parse(extras.getString("Path")).toString()));
+		    		mImageView.setImageURI(Uri.parse(extras.getString("Path")));
+		    		break;
 		    }
 		}
 	}
@@ -199,5 +168,4 @@ public class MainScreenActivity extends ActionBarActivity {
 		super.onDestroy();
 		android.os.Debug.stopMethodTracing();
 	}
-	
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+   <com.myapp.thesis.GalleryLinearLayout 
+        android:id="@+id/root"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:gravity="center" 
+	    android:background="@android:color/transparent">
+
+	    <ImageView
+	        android:id="@+id/gallery_image"
+	        android:layout_width="150dp"
+	        android:layout_height="200dp"
+	        android:layout_alignParentTop="true"
+	        android:layout_centerHorizontal="true"
+	        android:onClick="getImage()"
+	        android:background="#ffffff"
+	        android:scaleType="fitXY"
+	        android:src="@drawable/ic_launcher" />
+
+	    <TextView
+	        android:id="@+id/text"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="AAAAAAAAA"
+	        android:textColor="#FFFFFF"
+	        android:textSize="20dp" />
+
+	</com.myapp.thesis.GalleryLinearLayout>
+</LinearLayout>

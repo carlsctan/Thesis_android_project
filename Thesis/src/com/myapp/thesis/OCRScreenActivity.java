@@ -6,10 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-//import com.googlecode.tesseract.android.TessBaseAPI;
-
-
-
 import com.googlecode.tesseract.android.TessBaseAPI;
 
 import android.app.Activity;
@@ -24,12 +20,13 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class OCRScreenActivity extends Activity{
 
 	public static final String PACKAGE_NAME = "com.myapp.thesis";
 	public static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/Mathemagic/";
-	public static final String lang = "eng";
+	public static final String lang = "eng2";
 	private static final String TAG = "OCRActivity.java";
 	
 	protected EditText _field;
@@ -103,6 +100,13 @@ public class OCRScreenActivity extends Activity{
 		
 		Intent intent = getIntent();
 		this.bitmap = (Bitmap) intent.getParcelableExtra("inputValKey");
+		
+		
+//		ImageView image = (ImageView)findViewById(R.id.imageView1);
+//		image.setImageBitmap(this.bitmap);
+		
+		//this.ImageProcess();
+		//this.OcrMethod();
 
 	}		
 	
@@ -143,10 +147,9 @@ public class OCRScreenActivity extends Activity{
 		
 	}
 	
-//	public void procResult(View v){
-//		Log.v(TAG, "Click Action is okay");
-//		Intent start_intent = new Intent(OCRScreenActivity.this, ResultScreenActivity.class);
-//		startActivity(start_intent);
-//	}
-	
+	public void procResult(View v){
+		Log.v(TAG, "Click Action is okay");
+		Intent start_intent = new Intent(OCRScreenActivity.this, ResultScreenActivity.class);
+		startActivity(start_intent);
+	}
 }
