@@ -1,30 +1,20 @@
 package com.myapp.thesis;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Images;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -45,11 +35,14 @@ public class MainScreenActivity extends ActionBarActivity {
 		this.getSupportActionBar().show();
 		
 		//path of app-private directory
-		_root = getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
-		
-		//creation of folders to the path _root
-		rootFile = new File(_root);
-		rootFile.mkdirs();
+		if(getExternalFilesDir(Environment.DIRECTORY_PICTURES) != null)
+		{
+			_root = getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
+			
+			//creation of folders to the path _root
+			rootFile = new File(_root);
+			rootFile.mkdirs();
+		}
 		
 		
 		mImageView = (ImageView)this.findViewById(R.id.selected_image);
