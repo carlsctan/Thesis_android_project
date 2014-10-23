@@ -59,6 +59,10 @@ public class MainScreenActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
+				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+				ft.replace(R.id.childFragment, new BlankFragment(), "blankFragment");
+				ft.replace(R.id.MainFragment, new BlankFragment(), "blankFragment");
+				ft.commit();
 				takePicture();
 			}
 		});
@@ -67,6 +71,10 @@ public class MainScreenActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
+				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+				ft.replace(R.id.childFragment, new BlankFragment(), "blankFragment");
+				ft.replace(R.id.MainFragment, new BlankFragment(), "blankFragment");
+				ft.commit();
 				openGallery();
 			}
 		});

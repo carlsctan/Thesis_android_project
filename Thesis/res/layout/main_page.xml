@@ -31,9 +31,9 @@
         android:name="com.myapp.thesis.BlankFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/selected_image"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/MainFragment" />
-    
 
     <LinearLayout
         android:id="@+id/linearLayout2"

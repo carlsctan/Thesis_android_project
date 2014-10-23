@@ -2,11 +2,13 @@ package com.myapp.thesis;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class OcrResultFragment extends Fragment{
@@ -16,7 +18,7 @@ public class OcrResultFragment extends Fragment{
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		 View v = inflater.inflate(R.layout.ocr_result_fragment, container, false);
-		 ImageView iv = (ImageView)v.findViewById(R.id.calculateBtn);
+		 Button iv = (Button)v.findViewById(R.id.calBtn);
 		 iv.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
